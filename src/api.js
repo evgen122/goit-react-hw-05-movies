@@ -1,5 +1,4 @@
 import axios from 'axios';
-// 9ad4d94cf88f6011a6f91c12beaa36d6
 
 const key = 'api_key=9ad4d94cf88f6011a6f91c12beaa36d6';
 
@@ -14,6 +13,7 @@ export const fetchSearchMovies = async query => {
   const response = await axios.get(
     `/search/movie?${key}&query=${query}&include_adult=false&language=en-US`
   );
+  // console.log(response.data);
   return response.data;
 };
 
