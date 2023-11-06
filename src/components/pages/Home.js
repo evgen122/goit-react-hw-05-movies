@@ -1,29 +1,36 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchTrending } from 'api';
 import { TrendingList } from 'components/TrendingList/TrendingList';
+// import { fetchTrending } from 'api';
 
 export default function Home() {
+  const [dataTrendingToday, setDataTrendingToday] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const trendingToday = async () => {
-    try {
-      setLoading(true);
-      setError(false);
-      await fetchTrending();
-      // toast.success('Создали квиз! Вернитесь на список чтобы увидеть!');
-    } catch (error) {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  };
+  useEffect(() => {
+    const trendingToday = async () => {
+      try {
+        setLoading(true);
+        setError(false);
+        const movies = await fetchTrending();
+        setDataTrendingToday(movies);
+        console.log(movies);
+        // toast.success('Создали квиз! Вернитесь на список чтобы увидеть!');
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTrending();
+  });
 
   return (
     <div>
       <h2>Trending today</h2>
       <ul>
-        <TrendingList data={trendingToday} />
+        <TrendingList data={dataTrendingToday} />
       </ul>
     </div>
   );
