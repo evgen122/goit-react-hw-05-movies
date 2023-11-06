@@ -15,7 +15,7 @@ export default function Home() {
         setError(false);
         const movies = await fetchTrending();
         setDataTrendingToday(movies);
-        console.log(movies);
+        // console.log(movies);
         // toast.success('Создали квиз! Вернитесь на список чтобы увидеть!');
       } catch (error) {
         setError(true);
@@ -23,12 +23,13 @@ export default function Home() {
         setLoading(false);
       }
     };
-    fetchTrending();
-  });
+    trendingToday();
+  }, []);
 
   return (
     <div>
       <h2>Trending today</h2>
+
       <ul>
         <TrendingList data={dataTrendingToday} />
       </ul>

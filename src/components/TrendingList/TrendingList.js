@@ -1,12 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from 'react-router-dom';
 
 export const TrendingList = dataTrendingToday => {
-  dataTrendingToday.map(i => {
-      <li key={ i.id }>
-        <Link to={`/i/${i.id}`}
-    </li>;
-  });
-  const a = dataTrendingToday;
-  console.log(a);
-  //   return <li>item movie</li>;
+  //   console.log(dataTrendingToday.data.results);
+  // console.log(results);
+
+  const location = useLocation();
+  if (!dataTrendingToday.data.results) {
+    // console.log(dataTrendingToday.data.results);
+    return '';
+  } else {
+    console.log(dataTrendingToday.data.results);
+
+    return dataTrendingToday.data.results.map(i => (
+      <li key={i.id}>
+        <Link to={`/i/${i.id}`} state={{ from: location }}>
+          {i.name ?? i.title}
+        </Link>
+      </li>
+    ));
+  }
 };
