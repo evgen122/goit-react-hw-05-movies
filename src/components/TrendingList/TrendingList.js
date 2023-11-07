@@ -13,7 +13,7 @@ export const TrendingList = dataTrendingToday => {
 
     return dataTrendingToday.data.results.map(i => (
       <li key={i.id}>
-        <Link to={`/movie/${i.id}`} state={{ from: location }}>
+        <Link to={`/movies/${i.id}`} state={{ from: location }}>
           {i.name ?? i.title}
         </Link>
       </li>

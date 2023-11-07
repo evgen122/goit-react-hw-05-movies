@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Field, Form } from 'formik';
 // import { SearchBar } from './Searchbar.styled';
 
-export const Searchbar = ({ movieData, searchMovies }) => {
+export const Searchbar = ({ movieData, onSearch }) => {
   return (
     <div className="searchbar">
       <Formik
@@ -10,7 +10,8 @@ export const Searchbar = ({ movieData, searchMovies }) => {
           filter: '',
         }}
         onSubmit={values => {
-          searchMovies(values);
+          console.log(values);
+          onSearch(values);
         }}
       >
         <Form>
