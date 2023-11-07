@@ -14,9 +14,6 @@ export const Navigation = () => {
         Home
       </Link>
       <Link to="/movies">Movies</Link>
-      {/* <Link to="/">Home</Link>
-      <Link to="/create">Create quiz</Link>
-      <Link to="/quizzes">Quiz list</Link> */}
     </nav>
   );
 };
