@@ -11,7 +11,7 @@ export const fetchTrending = async () => {
   return response.data;
 };
 
-export const fetchSearchMovies = async ({ filter }) => {
+export const fetchSearchMovies = async filter => {
   // console.log(filter);
   const response = await axios.get(
     `/search/movie?${key}&query=${filter}&include_adult=false&language=en-US`
