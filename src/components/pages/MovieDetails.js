@@ -1,11 +1,14 @@
 import { fetchMoviesDetails } from 'api';
+import { Cast } from 'components/Cast/Cast';
+import { Reviews } from 'components/Reviews/Reviews';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router-dom';
+import { BsArrowLeft } from 'react-icons/bs';
 
 export default function MovieDetails() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [movie, setMovie] = useState({});
+  // const [movie, setMovie] = useState({});
   const [poster, setPoster] = useState('');
   const [title, setTitle] = useState();
   const [overview, setOverview] = useState();
@@ -15,7 +18,7 @@ export default function MovieDetails() {
 
   const params = useParams().movieId;
 
-  console.log(params);
+  // console.log(params);
 
   useEffect(() => {
     movieCard(params);
@@ -26,7 +29,7 @@ export default function MovieDetails() {
       setLoading(true);
       setError(false);
       const data = await fetchMoviesDetails(params);
-      setMovie(data);
+      // setMovie(data);
       // console.log(data);
       // console.log(movie);
       const {
@@ -40,20 +43,15 @@ export default function MovieDetails() {
       setPoster(poster_path);
       setTitle(title);
       setOverview(overview);
-      // setGenres(genres);
       setVoteAverage(vote_average * 10);
       setReleaseDate(release_date);
 
-      console.log(poster_path);
+      // console.log(poster_path);
 
       const genresList = genres.map(i => i.name + '\u00A0');
       setGenres(genresList);
 
-      return (
-        // setImg(prevState => [...prevState, ...imges.hits]),
-        // setTotal(imges.total),
-        setLoading(false)
-      );
+      return setLoading(false);
     } catch (error) {
       setError(true);
     } finally {
@@ -63,11 +61,16 @@ export default function MovieDetails() {
 
   return (
     <div>
-      <img
-        src={`https://image.tmdb.org/t/p/w500${poster}`}
-        alt={title}
-        width="250px"
-      />
+      <Link to="/movies">
+        <BsArrowLeft /> Go back
+      </Link>
+      {poster && (
+        <img
+          src={`https://image.tmdb.org/t/p/w500${poster}`}
+          alt={title}
+          width="250px"
+        />
+      )}
       <h2>
         {title} ({releaseDate})
       </h2>
@@ -76,17 +79,19 @@ export default function MovieDetails() {
       <p>{overview}</p>
       <h3>Genres</h3>
       <p>{genres}</p>
-      <div>
+      <nav>
         <p>Additional information</p>
         <ul>
           <li>
-            <Link>Cast</Link>
+            <Link to="cast">Cast</Link>
           </li>
           <li>
-            <Link>Reviews</Link>
+            <Link to="reviews">Reviews</Link>
+            {/* <Link to={`/movies/${params}/reviews`}>Reviews</Link> */}
           </li>
         </ul>
-      </div>
+        <Outlet />
+      </nav>
     </div>
   );
 }
