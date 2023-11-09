@@ -5,11 +5,12 @@ export const TrendingList = dataTrendingToday => {
   // console.log(results);
 
   const location = useLocation();
+  console.log('location', location);
 
   if (!dataTrendingToday.data.results) {
     return '';
   } else {
-    console.log(dataTrendingToday.data.results);
+    // console.log(dataTrendingToday.data.results);
 
     return dataTrendingToday.data.results.map(i => (
       <li key={i.id}>

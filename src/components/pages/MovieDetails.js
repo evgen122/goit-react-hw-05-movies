@@ -2,7 +2,7 @@ import { fetchMoviesDetails } from 'api';
 import { Cast } from 'components/Cast/Cast';
 import { Reviews } from 'components/Reviews/Reviews';
 import { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { BsArrowLeft } from 'react-icons/bs';
 
 export default function MovieDetails() {
@@ -17,6 +17,9 @@ export default function MovieDetails() {
   const [releaseDate, setReleaseDate] = useState();
 
   const params = useParams().movieId;
+  const location = useLocation();
+  const defaultImg =
+    '<https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700>';
 
   // console.log(params);
 
@@ -59,22 +62,24 @@ export default function MovieDetails() {
     }
   };
 
+  console.log('Details', location);
+
   return (
     <div>
-      <Link to="/movies">
+      <Link to={location.state?.from ?? '/'}>
         <BsArrowLeft /> Go back
       </Link>
       {poster && (
         <img
-          src={`https://image.tmdb.org/t/p/w500${poster}`}
+          src={poster ? `https://image.tmdb.org/t/p/w500${poster}` : defaultImg}
           alt={title}
           width="250px"
         />
       )}
       <h2>
-        {title} ({releaseDate})
+        {title} ({releaseDate ? releaseDate.substring(0, 4) : '----'})
       </h2>
-      <p>Use score {voteAverage}%</p>
+      <p>Use score {Math.trunc(voteAverage)}%</p>
       <h3>Overview</h3>
       <p>{overview}</p>
       <h3>Genres</h3>
