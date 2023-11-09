@@ -6,8 +6,8 @@ import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { BsArrowLeft } from 'react-icons/bs';
 
 export default function MovieDetails() {
-  const [setLoading] = useState(false);
-  const [setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   // const [movie, setMovie] = useState({});
   const [poster, setPoster] = useState('');
   const [title, setTitle] = useState();
@@ -92,7 +92,6 @@ export default function MovieDetails() {
           </li>
           <li>
             <Link to="reviews">Reviews</Link>
-            {/* <Link to={`/movies/${params}/reviews`}>Reviews</Link> */}
           </li>
         </ul>
         <Outlet />

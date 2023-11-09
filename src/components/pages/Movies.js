@@ -5,12 +5,12 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 export default function Movies() {
-  const [setLoading] = useState(false);
-  const [setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [movieData, setMovieData] = useState([]);
   const [setImg] = useState([]);
   // const [filter, setFilter] = useState('');
-  const [setPage] = useState(1);
+  // const [setPage] = useState(1);
   const [params] = useSearchParams();
   // const [query, setQuery] = useState('');
 
@@ -19,7 +19,7 @@ export default function Movies() {
   // const filter = query
 
   const addSearch = newSearch => {
-    setPage(1);
+    // setPage(1);
     setImg([]);
     setMovieData([]);
     // setFilter(newSearch);

@@ -5,8 +5,8 @@ import { TrendingList } from 'components/TrendingList/TrendingList';
 
 export default function Home() {
   const [dataTrendingToday, setDataTrendingToday] = useState([]);
-  const [setLoading] = useState(false);
-  const [setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const trendingToday = async () => {
