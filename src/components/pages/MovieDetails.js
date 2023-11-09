@@ -1,6 +1,4 @@
 import { fetchMoviesDetails } from 'api';
-// import { Cast } from 'components/Cast/Cast';
-// import { Reviews } from 'components/Reviews/Reviews';
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { BsArrowLeft } from 'react-icons/bs';
@@ -8,7 +6,6 @@ import { BsArrowLeft } from 'react-icons/bs';
 export default function MovieDetails() {
   const [, setLoading] = useState(false);
   const [, setError] = useState(false);
-  // const [movie, setMovie] = useState({});
   const [poster, setPoster] = useState('');
   const [title, setTitle] = useState();
   const [overview, setOverview] = useState();
@@ -20,8 +17,7 @@ export default function MovieDetails() {
   const location = useLocation();
   const defaultImg =
     'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
-
-  // console.log(params);
+  const backLink = location.state?.from ?? '/';
 
   useEffect(() => {
     movieCard(params);
@@ -32,9 +28,6 @@ export default function MovieDetails() {
       setLoading(true);
       setError(false);
       const data = await fetchMoviesDetails(params);
-      // setMovie(data);
-      // console.log(data);
-      // console.log(movie);
       const {
         poster_path,
         title,
@@ -43,13 +36,12 @@ export default function MovieDetails() {
         vote_average,
         release_date,
       } = data;
+
       setPoster(poster_path ?? '');
       setTitle(title);
       setOverview(overview);
       setVoteAverage(vote_average * 10);
       setReleaseDate(release_date);
-
-      // console.log(poster_path);
 
       const genresList = genres.map(i => i.name + '\u00A0');
       setGenres(genresList);
@@ -62,13 +54,12 @@ export default function MovieDetails() {
     }
   };
 
-  console.log('Details', location);
-
   return (
     <div>
-      <Link to={location.state?.from ?? '/'}>
+      <Link to={backLink}>
         <BsArrowLeft /> Go back
       </Link>
+
       {poster && (
         <img
           src={poster ? `https://image.tmdb.org/t/p/w500${poster}` : defaultImg}
@@ -76,6 +67,7 @@ export default function MovieDetails() {
           width="250px"
         />
       )}
+
       <h2>
         {title} ({releaseDate ? releaseDate.substring(0, 4) : '----'})
       </h2>
@@ -88,10 +80,14 @@ export default function MovieDetails() {
         <p>Additional information</p>
         <ul>
           <li>
-            <Link to="cast">Cast</Link>
+            <Link to="cast" state={location.state}>
+              Cast
+            </Link>
           </li>
           <li>
-            <Link to="reviews">Reviews</Link>
+            <Link to="reviews" state={location.state}>
+              Reviews
+            </Link>
           </li>
         </ul>
         <Outlet />

@@ -1,12 +1,10 @@
 import React from 'react';
 import { Formik, Field, Form } from 'formik';
 import { useSearchParams } from 'react-router-dom';
-// import { SearchBar } from './Searchbar.styled';
 
 export const Searchbar = () => {
   const [params, setParams] = useSearchParams();
   const query = params.get('query') ?? '';
-  //   console.log(query);
   const changQuery = values => {
     setParams({ query: values });
   };
@@ -18,9 +16,7 @@ export const Searchbar = () => {
           filter: query,
         }}
         onSubmit={values => {
-          //   console.log(values);
           changQuery(values.filter);
-          //   onSearch(values);
         }}
       >
         <Form>

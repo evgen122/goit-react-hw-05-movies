@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchTrending } from 'api';
 import { TrendingList } from 'components/TrendingList/TrendingList';
-// import { fetchTrending } from 'api';
 
 export default function Home() {
   const [dataTrendingToday, setDataTrendingToday] = useState([]);
@@ -15,8 +14,6 @@ export default function Home() {
         setError(false);
         const movies = await fetchTrending();
         setDataTrendingToday(movies);
-        // console.log(movies);
-        // toast.success('Создали квиз! Вернитесь на список чтобы увидеть!');
       } catch (error) {
         setError(true);
       } finally {

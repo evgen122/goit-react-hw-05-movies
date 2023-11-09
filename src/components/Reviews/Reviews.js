@@ -19,9 +19,7 @@ export const Reviews = () => {
       setLoading(true);
       setError(false);
       const data = await fetchMovieReviews(params);
-      console.log(data.results);
       setDataReviews(data.results);
-      // console.log(dataReviews);
 
       return setLoading(false);
     } catch (error) {
@@ -32,17 +30,14 @@ export const Reviews = () => {
   };
 
   return (
-    console.log(dataReviews),
-    (
-      <div>
-        {dataReviews && dataReviews.length !== 0 ? (
-          <ul>
-            <ReviewsList data={dataReviews} />
-          </ul>
-        ) : (
-          <p>We don't have any reviews for this movie.</p>
-        )}
-      </div>
-    )
+    <div>
+      {dataReviews && dataReviews.length !== 0 ? (
+        <ul>
+          <ReviewsList data={dataReviews} />
+        </ul>
+      ) : (
+        <p>We don't have any reviews for this movie.</p>
+      )}
+    </div>
   );
 };

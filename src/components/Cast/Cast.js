@@ -19,7 +19,6 @@ export const Cast = () => {
       setLoading(true);
       setError(false);
       const data = await fetchMovieCredits(params);
-      console.log(data);
       setDataCast(data.cast);
 
       return setLoading(false);
