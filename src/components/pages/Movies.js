@@ -5,13 +5,13 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 export default function Movies() {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [setLoading] = useState(false);
+  const [setError] = useState(false);
   const [movieData, setMovieData] = useState([]);
-  const [img, setImg] = useState([]);
+  const [setImg] = useState([]);
   // const [filter, setFilter] = useState('');
-  const [page, setPage] = useState(1);
-  const [params, setParams] = useSearchParams();
+  const [setPage] = useState(1);
+  const [params] = useSearchParams();
   // const [query, setQuery] = useState('');
 
   const filter = params.get('query') ?? '';

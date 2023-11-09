@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 import { CastList } from './CastList';
 
 export const Cast = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [setLoading] = useState(false);
+  const [setError] = useState(false);
   const [dataCast, setDataCast] = useState([]);
 
   const params = useParams().movieId;

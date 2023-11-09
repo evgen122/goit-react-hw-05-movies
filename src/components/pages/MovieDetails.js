@@ -1,13 +1,13 @@
 import { fetchMoviesDetails } from 'api';
-import { Cast } from 'components/Cast/Cast';
-import { Reviews } from 'components/Reviews/Reviews';
+// import { Cast } from 'components/Cast/Cast';
+// import { Reviews } from 'components/Reviews/Reviews';
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { BsArrowLeft } from 'react-icons/bs';
 
 export default function MovieDetails() {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [setLoading] = useState(false);
+  const [setError] = useState(false);
   // const [movie, setMovie] = useState({});
   const [poster, setPoster] = useState('');
   const [title, setTitle] = useState();
