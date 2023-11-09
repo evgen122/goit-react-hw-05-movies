@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 import { ReviewsList } from './ReviewsList';
 
 export const Reviews = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [, setLoading] = useState(false);
+  const [, setError] = useState(false);
   const [dataReviews, setDataReviews] = useState();
 
   const params = useParams().movieId;
