@@ -4,10 +4,10 @@ import { Layout } from './Layout';
 import { Cast } from './Cast/Cast';
 import { Reviews } from './Reviews/Reviews';
 
-const Home = lazy(() => import('./pages/Home'));
-const Movies = lazy(() => import('./pages/Movies'));
-const MovieDetails = lazy(() => import('./pages/MovieDetails'));
-const NotFound = lazy(() => import('./pages/NotFound'));
+const Home = lazy(() => import('pages/Home'));
+const Movies = lazy(() => import('pages/Movies'));
+const MovieDetails = lazy(() => import('pages/MovieDetails'));
+const NotFound = lazy(() => import('pages/NotFound'));
 
 export const App = () => {
   return (
