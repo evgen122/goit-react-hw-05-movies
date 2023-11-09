@@ -19,7 +19,7 @@ export default function MovieDetails() {
   const params = useParams().movieId;
   const location = useLocation();
   const defaultImg =
-    '<https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700>';
+    'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 
   // console.log(params);
 
@@ -43,7 +43,7 @@ export default function MovieDetails() {
         vote_average,
         release_date,
       } = data;
-      setPoster(poster_path);
+      setPoster(poster_path ?? '');
       setTitle(title);
       setOverview(overview);
       setVoteAverage(vote_average * 10);
